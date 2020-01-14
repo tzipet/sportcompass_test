@@ -1,0 +1,10 @@
+.cardContainer {
+  display: flex;
+  flex-wrap: wrap;
+  flex-grow: 1;
+}
+
+.productCard {
+  margin-top: 24px;
+  margin-bottom: 24px;
+}
