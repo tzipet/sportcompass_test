@@ -8,3 +8,13 @@
   margin-top: 24px;
   margin-bottom: 24px;
 }
+
+.productInfoContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.productTitle {
+  text-align: center;
+}

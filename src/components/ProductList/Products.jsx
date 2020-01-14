@@ -32,9 +32,22 @@ const ProductList = () => {
                     />
                   </Carousel.Item>
                 </Carousel>
-                <Card.Title>{product.description}</Card.Title>
-                <Card.Text>€ {product.price}</Card.Text>
-                <Button variant="info">Add To Cart</Button>
+                <hr
+                  style={{
+                    color: "#0099CC",
+                    backgroundColor: "#0099CC",
+                    height: 0.2,
+                    width: "50%",
+                    borderColor: "#0099CC"
+                  }}
+                />
+                <div className="productInfoContainer">
+                  <Card.Title className="productTitle">
+                    {product.description}
+                  </Card.Title>
+                  <Card.Text>€ {product.price}</Card.Text>
+                  <Button variant="info">Add To Cart</Button>
+                </div>
               </Card.Body>
             </Card>
           </Col>
