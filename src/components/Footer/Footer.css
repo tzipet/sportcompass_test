@@ -1,0 +1,13 @@
+.footerContainer {
+  background-color: #f8f9fa;
+  padding-bottom: 32px;
+  padding-top: 32px;
+}
+
+.footer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-right: 16px;
+}

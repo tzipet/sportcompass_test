@@ -5,9 +5,9 @@ import Button from "react-bootstrap/Button";
 
 const AppBar = () => {
   return (
-    <Navbar className="navbar" bg="dark" variant="dark">
+    <Navbar className="navbar" bg="light" variant="light">
       <Navbar.Brand href="#home">Jersey Store</Navbar.Brand>
-      <Button className="cartButton" variant="outline-success">
+      <Button className="cartButton" variant="info">
         <img
           alt=""
           src="../../images/icon-cart.png"
