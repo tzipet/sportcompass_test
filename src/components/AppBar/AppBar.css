@@ -4,5 +4,7 @@
   justify-content: space-between;
 }
 
-.cartButton {
+.modal-content {
+  background-color: #117a8b;
+  color: #fff;
 }
