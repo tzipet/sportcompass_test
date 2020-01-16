@@ -5,6 +5,16 @@
 }
 
 .modal-content {
-  background-color: #117a8b;
-  color: #fff;
+  background-color: azure;
+  color: rgb(0, 0, 0);
+}
+
+.cardContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.checkoutContainer {
+  display: flex;
+  justify-content: space-between;
 }

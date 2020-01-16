@@ -8,12 +8,16 @@ import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Carousel from "react-bootstrap/Carousel";
 
-const ProductList = () => {
+const ProductList = ({ onAddToCart, cartItems }) => {
+  const onclick = product => {
+    onAddToCart(product);
+  };
+
   return (
     <Container>
       <Row>
         {products.map(product => (
-          <Col xs={12} sm={6} lg={4}>
+          <Col key={product.id} xs={12} sm={6} lg={4}>
             <Card className="productCard">
               <Card.Body>
                 <Carousel interval={false}>
@@ -21,14 +25,14 @@ const ProductList = () => {
                     <img
                       className="d-block w-100"
                       src={product.image1}
-                      alt="First slide"
+                      alt="First img"
                     />
                   </Carousel.Item>
                   <Carousel.Item>
                     <img
                       className="d-block w-100"
                       src={product.image2}
-                      alt="second slide"
+                      alt="second img"
                     />
                   </Carousel.Item>
                 </Carousel>
@@ -46,7 +50,9 @@ const ProductList = () => {
                     {product.description}
                   </Card.Title>
                   <Card.Text>€ {product.price}</Card.Text>
-                  <Button variant="info">Add To Cart</Button>
+                  <Button onClick={() => onclick(product)} variant="primary">
+                    Add To Cart
+                  </Button>
                 </div>
               </Card.Body>
             </Card>
