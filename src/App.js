@@ -10,9 +10,22 @@ function App() {
     setCartItems([...cartItems, product]);
   };
 
+  const handleRemoveFromCart = product => {
+    setCartItems(
+      cartItems.filter(function(el) {
+        return el.id !== product.id;
+      })
+    );
+  };
+
+  // var filtered = someArray.filter(function(el) { return el.Name != "Kristian"; });
+
   return (
     <div className="App">
-      <AppBar cartItems={cartItems}></AppBar>
+      <AppBar
+        cartItems={cartItems}
+        onHandleRemoveFromCart={handleRemoveFromCart}
+      ></AppBar>
       <ProductList
         onAddToCart={handleAddToCart}
         cartItems={cartItems}

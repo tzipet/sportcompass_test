@@ -5,7 +5,7 @@ import Navbar from "react-bootstrap/Navbar";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 
-const AppBar = ({ cartItems }) => {
+const AppBar = ({ cartItems, onHandleRemoveFromCart }) => {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -37,7 +37,10 @@ const AppBar = ({ cartItems }) => {
           <Modal.Title>Your Shopping Cart</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Cart cartItems={cartItems} />
+          <Cart
+            cartItems={cartItems}
+            onRemoveFromCart={onHandleRemoveFromCart}
+          />
         </Modal.Body>
         <Modal.Footer className="checkoutContainer">
           <div>Total Amount: € {totalAmount}</div>

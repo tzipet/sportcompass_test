@@ -4,23 +4,26 @@ import ListGroup from "react-bootstrap/ListGroup";
 import NumericInput from "react-numeric-input";
 import Button from "react-bootstrap/Button";
 
-const Cart = ({ cartItems }) => {
+const Cart = ({ cartItems, onRemoveFromCart }) => {
+  const onclick = product => {
+    onRemoveFromCart(product);
+  };
   return (
     <div>
       {cartItems && cartItems.length > 0
-        ? cartItems.map(item => (
+        ? cartItems.map(product => (
             <ListGroup>
               <ListGroup.Item>
                 <div className={styles.cardContainer}>
                   <img
                     className={styles.itemImage}
-                    src={item.image1}
-                    alt={item.image2}
+                    src={product.image1}
+                    alt={product.image2}
                   />
 
                   <div className={styles.itemBody}>
-                    <span>{item.description}</span>
-                    <span>€ {item.price}</span>
+                    <span>{product.description}</span>
+                    <span>€ {product.price}</span>
                   </div>
                   <div className={styles.quantityContainer}>
                     <span>Quantity</span>
@@ -31,6 +34,9 @@ const Cart = ({ cartItems }) => {
                       className={styles.numericInput}
                       size={2}
                     />
+                    <Button onClick={() => onclick(product)} variant="light">
+                      x
+                    </Button>
                   </div>
                 </div>
               </ListGroup.Item>
