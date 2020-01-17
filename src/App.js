@@ -6,8 +6,23 @@ import Footer from "./components/Footer/Footer";
 function App() {
   const [cartItems, setCartItems] = useState([]);
 
+  const checkIfProductExistsInCart = product =>
+    cartItems.find(el => el.id === product.id);
+
+  const getProductQuantity = product => {
+    const procuctInCart = checkIfProductExistsInCart(product);
+    let index = cartItems.indexOf(procuctInCart);
+    if (index > -1) {
+      return cartItems[index].quantity ? cartItems[index].quantity + 1 : 1;
+    }
+    return 1;
+  };
+
   const handleAddToCart = product => {
-    setCartItems([...cartItems, product]);
+    const quantifiedProduct = Object.assign({}, product, {
+      quantity: getProductQuantity(product)
+    });
+    setCartItems([...cartItems, quantifiedProduct]);
   };
 
   const handleRemoveFromCart = product => {
@@ -17,8 +32,6 @@ function App() {
       })
     );
   };
-
-  // var filtered = someArray.filter(function(el) { return el.Name != "Kristian"; });
 
   return (
     <div className="App">

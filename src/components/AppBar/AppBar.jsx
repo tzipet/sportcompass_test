@@ -13,7 +13,8 @@ const AppBar = ({ cartItems, onHandleRemoveFromCart }) => {
 
   let initialValue = 0;
   let totalAmount = cartItems.reduce(
-    (accumulator, currentValue) => accumulator + currentValue.price,
+    (accumulator, currentValue) =>
+      accumulator + currentValue.price * currentValue.quantity,
     initialValue
   );
 

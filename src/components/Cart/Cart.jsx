@@ -28,7 +28,7 @@ const Cart = ({ cartItems, onRemoveFromCart }) => {
                   <div className={styles.quantityContainer}>
                     <span>Quantity</span>
                     <NumericInput
-                      value={1}
+                      value={product.quantity}
                       min={1}
                       max={99}
                       className={styles.numericInput}
@@ -42,7 +42,7 @@ const Cart = ({ cartItems, onRemoveFromCart }) => {
               </ListGroup.Item>
             </ListGroup>
           ))
-        : "Items in the cart!"}
+        : "Your shopping cart is empty!"}
     </div>
   );
 };
