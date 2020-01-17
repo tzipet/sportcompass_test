@@ -9,20 +9,21 @@ function App() {
   const checkIfProductExistsInCart = product =>
     cartItems.find(el => el.id === product.id);
 
-  const getProductQuantity = product => {
-    const procuctInCart = checkIfProductExistsInCart(product);
-    let index = cartItems.indexOf(procuctInCart);
-    if (index > -1) {
-      return cartItems[index].quantity ? cartItems[index].quantity + 1 : 1;
-    }
-    return 1;
-  };
-
   const handleAddToCart = product => {
-    const quantifiedProduct = Object.assign({}, product, {
-      quantity: getProductQuantity(product)
-    });
-    setCartItems([...cartItems, quantifiedProduct]);
+    const alreadyExists = checkIfProductExistsInCart(product);
+    let newCartItems = [];
+    if (alreadyExists) {
+      newCartItems = cartItems.map(item => {
+        if (item.id === product.id) {
+          return { ...item, quantity: item.quantity + 1 };
+        } else {
+          return { ...item };
+        }
+      });
+    } else {
+      newCartItems = [...cartItems, { ...product, quantity: 1 }];
+    }
+    setCartItems(newCartItems);
   };
 
   const handleRemoveFromCart = product => {
@@ -33,11 +34,25 @@ function App() {
     );
   };
 
+  const handleUpdateQuantity = (valueAsNumber, product) => {
+    let newCartItems = [];
+    newCartItems = cartItems.map(item => {
+      if (item.id === product.id) {
+        return { ...item, quantity: valueAsNumber };
+      } else {
+        return { ...item };
+      }
+    });
+
+    setCartItems(newCartItems);
+  };
+
   return (
     <div className="App">
       <AppBar
         cartItems={cartItems}
         onHandleRemoveFromCart={handleRemoveFromCart}
+        onUpdateQuantity={handleUpdateQuantity}
       ></AppBar>
       <ProductList
         onAddToCart={handleAddToCart}

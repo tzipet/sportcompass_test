@@ -4,9 +4,13 @@ import ListGroup from "react-bootstrap/ListGroup";
 import NumericInput from "react-numeric-input";
 import Button from "react-bootstrap/Button";
 
-const Cart = ({ cartItems, onRemoveFromCart }) => {
+const Cart = ({ cartItems, onRemoveFromCart, onUpdateQuantity }) => {
   const onclick = product => {
     onRemoveFromCart(product);
+  };
+
+  const valueSelect = (valueAsNumber, product) => {
+    onUpdateQuantity(valueAsNumber, product);
   };
   return (
     <div>
@@ -33,6 +37,9 @@ const Cart = ({ cartItems, onRemoveFromCart }) => {
                       max={99}
                       className={styles.numericInput}
                       size={2}
+                      onChange={valueAsNumber =>
+                        valueSelect(valueAsNumber, product)
+                      }
                     />
                     <Button onClick={() => onclick(product)} variant="light">
                       x
