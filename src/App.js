@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import AppBar from "./components/AppBar/AppBar";
 import ProductList from "./components/ProductList/Products";
 import Footer from "./components/Footer/Footer";
@@ -24,14 +24,16 @@ function App() {
       newCartItems = [...cartItems, { ...product, quantity: 1 }];
     }
     setCartItems(newCartItems);
+    window.localStorage.setItem("itemsInTheCart", JSON.stringify(newCartItems));
   };
 
   const handleRemoveFromCart = product => {
-    setCartItems(
-      cartItems.filter(function(el) {
-        return el.id !== product.id;
-      })
-    );
+    let newCartItems = [];
+    newCartItems = cartItems.filter(function(el) {
+      return el.id !== product.id;
+    });
+    setCartItems(newCartItems);
+    window.localStorage.setItem("itemsInTheCart", JSON.stringify(newCartItems));
   };
 
   const handleUpdateQuantity = (valueAsNumber, product) => {
@@ -45,7 +47,23 @@ function App() {
     });
 
     setCartItems(newCartItems);
+    window.localStorage.setItem("itemsInTheCart", JSON.stringify(newCartItems));
   };
+
+  const handleClearLocalStorage = () => {
+    let newCartItems = [];
+    window.localStorage.clear();
+    setCartItems(newCartItems);
+  };
+
+  useEffect(() => {
+    const newCartItems = JSON.parse(
+      window.localStorage.getItem("itemsInTheCart")
+    );
+    if (newCartItems) {
+      setCartItems(newCartItems);
+    }
+  }, []);
 
   return (
     <div className="App">
@@ -53,6 +71,7 @@ function App() {
         cartItems={cartItems}
         onHandleRemoveFromCart={handleRemoveFromCart}
         onUpdateQuantity={handleUpdateQuantity}
+        onHandleClearLocalStorage={handleClearLocalStorage}
       ></AppBar>
       <ProductList
         onAddToCart={handleAddToCart}

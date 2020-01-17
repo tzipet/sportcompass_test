@@ -5,10 +5,21 @@ import Navbar from "react-bootstrap/Navbar";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 
-const AppBar = ({ cartItems, onHandleRemoveFromCart, onUpdateQuantity }) => {
+const AppBar = ({
+  cartItems,
+  onHandleRemoveFromCart,
+  onUpdateQuantity,
+  onHandleClearLocalStorage
+}) => {
   const [show, setShow] = useState(false);
+  const [finalModalShow, setFinalModalShow] = useState(false);
 
-  const handleClose = () => setShow(false);
+  const handleClose = () => {
+    setShow(false);
+    onHandleClearLocalStorage();
+    setFinalModalShow(true);
+  };
+
   const handleShow = () => setShow(true);
 
   let initialValue = 0;
@@ -50,6 +61,20 @@ const AppBar = ({ cartItems, onHandleRemoveFromCart, onUpdateQuantity }) => {
             Checkout
           </Button>
         </Modal.Footer>
+      </Modal>
+      <Modal
+        size="sm"
+        show={finalModalShow}
+        onHide={() => setFinalModalShow(false)}
+      >
+        <Modal.Header className="final-modal-container">
+          <Modal.Title className="final-modal-body">
+            Thank you for your purchase!
+          </Modal.Title>
+          <Button onClick={() => setFinalModalShow(false)}>
+            Continue Shopping!
+          </Button>
+        </Modal.Header>
       </Modal>
     </Navbar>
   );

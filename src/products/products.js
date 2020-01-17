@@ -1,7 +1,7 @@
 const productList = [
   {
     id: 1234,
-    description: "Italy National Team Green 2019/20",
+    description: "Italy National Team Green Away 2019/2020",
     price: 53.0,
     image1: `${process.env.PUBLIC_URL}/images/Italy/Italia_F.jpeg`,
     image2: `${process.env.PUBLIC_URL}/images/Italy/Italia_B.jpeg`
@@ -22,7 +22,7 @@ const productList = [
   },
   {
     id: 1237,
-    description: "Japan National Team Blue 2020/2021",
+    description: "Japan National Team Blue  Away 2020/2021",
     price: 73.0,
     image1: `${process.env.PUBLIC_URL}/images/Japan/japan_F.jpeg`,
     image2: `${process.env.PUBLIC_URL}/images/Japan/japan_B.jpeg`
