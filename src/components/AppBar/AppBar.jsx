@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./AppBar.css";
+import styles from "./AppBar.module.css";
 import Cart from "../Cart/Cart";
 import Navbar from "react-bootstrap/Navbar";
 import Button from "react-bootstrap/Button";
@@ -38,15 +38,19 @@ const AppBar = ({
     initialValue
   );
   return (
-    <Navbar className="navbar" bg="light" variant="light">
+    <Navbar className={styles.navbar} bg="light" variant="light">
       <Navbar.Brand href="#home">Jersey Store</Navbar.Brand>
-      <Button className="cartButton" variant="primary" onClick={handleShow}>
+      <Button
+        className={styles.cartButton}
+        variant="primary"
+        onClick={handleShow}
+      >
         <img
           alt=""
           src="../../images/icon-cart.png"
           width="30"
           height="30"
-          className="cartImage"
+          className={styles.cartImage}
           onError={event => {
             event.target.setAttribute(
               "src",
@@ -70,7 +74,7 @@ const AppBar = ({
             onUpdateQuantity={onUpdateQuantity}
           />
         </Modal.Body>
-        <Modal.Footer className="checkoutContainer">
+        <Modal.Footer className={styles.checkoutContainer}>
           <div>Total Amount: € {totalAmount}</div>
           <Button variant="primary" onClick={handleCloseCheckout}>
             Checkout
@@ -82,8 +86,8 @@ const AppBar = ({
         show={finalModalShow}
         onHide={() => setFinalModalShow(false)}
       >
-        <Modal.Header className="final-modal-container">
-          <Modal.Title className="final-modal-body">
+        <Modal.Header className={styles.finalModalContainer}>
+          <Modal.Title className={styles.finalModalBody}>
             Thank you for your purchase!
           </Modal.Title>
           <Button onClick={() => setFinalModalShow(false)}>

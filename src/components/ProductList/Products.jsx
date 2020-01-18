@@ -1,6 +1,6 @@
 import React from "react";
 import products from "../../products/products";
-import "./Products.css";
+import styles from "./Products.module.css";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
@@ -12,13 +12,13 @@ const ProductList = ({ onAddToCart, cartItems }) => {
   const onclick = product => {
     onAddToCart(product);
   };
-  console.log(products);
+
   return (
     <Container>
       <Row>
         {products.map(product => (
           <Col key={product.id} xs={12} sm={6} lg={4}>
-            <Card className="productCard">
+            <Card className={styles.productCard}>
               <Card.Body>
                 <Carousel interval={false}>
                   {product.images.map(image => (
@@ -38,17 +38,9 @@ const ProductList = ({ onAddToCart, cartItems }) => {
                     </Carousel.Item>
                   ))}
                 </Carousel>
-                <hr
-                  style={{
-                    color: "#0099CC",
-                    backgroundColor: "#0099CC",
-                    height: 0.2,
-                    width: "50%",
-                    borderColor: "#0099CC"
-                  }}
-                />
-                <div className="productInfoContainer">
-                  <Card.Title className="productTitle">
+                <hr className={styles.hr} />
+                <div className={styles.productInfoContainer}>
+                  <Card.Title className={styles.productTitle}>
                     {product.description}
                   </Card.Title>
                   <Card.Text>€ {product.price}</Card.Text>

@@ -1,7 +1,6 @@
 # E-commerce store
 
-    This project is an e-shop web application that sells football jerseys and it was was
-    bootstrapped using Create React App.
+This project is an e-shop web application that sells football jerseys and it was bootstrapped using Create React App.
 
 ## Install
 

@@ -3,6 +3,7 @@ import styles from "./Cart.module.css";
 import ListGroup from "react-bootstrap/ListGroup";
 import NumericInput from "react-numeric-input";
 import Button from "react-bootstrap/Button";
+
 const Cart = ({ cartItems, onRemoveFromCart, onUpdateQuantity }) => {
   const handleRemoveClick = product => {
     onRemoveFromCart(product);
@@ -15,7 +16,7 @@ const Cart = ({ cartItems, onRemoveFromCart, onUpdateQuantity }) => {
     <div>
       {cartItems && cartItems.length > 0
         ? cartItems.map(product => (
-            <ListGroup>
+            <ListGroup key={product.id}>
               <ListGroup.Item>
                 <div className={styles.cardContainer}>
                   <img
