@@ -7,12 +7,12 @@ import Container from "react-bootstrap/Container";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Carousel from "react-bootstrap/Carousel";
-
+import Image from "react-bootstrap/Image";
 const ProductList = ({ onAddToCart, cartItems }) => {
   const onclick = product => {
     onAddToCart(product);
   };
-
+  console.log(products);
   return (
     <Container>
       <Row>
@@ -21,20 +21,22 @@ const ProductList = ({ onAddToCart, cartItems }) => {
             <Card className="productCard">
               <Card.Body>
                 <Carousel interval={false}>
-                  <Carousel.Item>
-                    <img
-                      className="d-block w-100"
-                      src={product.image1}
-                      alt="First img"
-                    />
-                  </Carousel.Item>
-                  <Carousel.Item>
-                    <img
-                      className="d-block w-100"
-                      src={product.image2}
-                      alt="second img"
-                    />
-                  </Carousel.Item>
+                  {product.images.map(image => (
+                    <Carousel.Item>
+                      <Image
+                        fluid={true}
+                        src={image}
+                        alt="First img"
+                        onError={event => {
+                          event.target.setAttribute(
+                            "src",
+                            `${process.env.PUBLIC_URL}/images/placeholder.jpg`
+                          );
+                          event.target.onError = null;
+                        }}
+                      />
+                    </Carousel.Item>
+                  ))}
                 </Carousel>
                 <hr
                   style={{
@@ -62,5 +64,4 @@ const ProductList = ({ onAddToCart, cartItems }) => {
     </Container>
   );
 };
-
 export default ProductList;

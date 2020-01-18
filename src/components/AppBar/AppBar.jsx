@@ -11,16 +11,20 @@ const AppBar = ({
   onUpdateQuantity,
   onHandleClearLocalStorage
 }) => {
-  const [show, setShow] = useState(false);
+  const [cartModalShow, setCartModalShow] = useState(false);
   const [finalModalShow, setFinalModalShow] = useState(false);
 
-  const handleClose = () => {
-    setShow(false);
+  const handleCloseCheckout = () => {
+    setCartModalShow(false);
     onHandleClearLocalStorage();
     setFinalModalShow(true);
   };
 
-  const handleShow = () => setShow(true);
+  const handleCloseModal = () => {
+    setCartModalShow(false);
+  };
+
+  const handleShow = () => setCartModalShow(true);
 
   let initialValue = 0;
   let totalAmount = cartItems.reduce(
@@ -29,6 +33,10 @@ const AppBar = ({
     initialValue
   );
 
+  let totalQuantity = cartItems.reduce(
+    (accumulator, currentValue) => accumulator + currentValue.quantity,
+    initialValue
+  );
   return (
     <Navbar className="navbar" bg="light" variant="light">
       <Navbar.Brand href="#home">Jersey Store</Navbar.Brand>
@@ -39,12 +47,19 @@ const AppBar = ({
           width="30"
           height="30"
           className="cartImage"
+          onError={event => {
+            event.target.setAttribute(
+              "src",
+              `${process.env.PUBLIC_URL}/images/defaultImage.png`
+            );
+            event.target.onError = null;
+          }}
         />
         {cartItems.length > 0 ? (
-          <span class="badge badge-pill">{cartItems.length}</span>
+          <span className="badge badge-pill">{totalQuantity}</span>
         ) : null}
       </Button>
-      <Modal show={show} onHide={handleClose}>
+      <Modal show={cartModalShow} onHide={handleCloseModal}>
         <Modal.Header closeButton>
           <Modal.Title>Your Shopping Cart</Modal.Title>
         </Modal.Header>
@@ -57,7 +72,7 @@ const AppBar = ({
         </Modal.Body>
         <Modal.Footer className="checkoutContainer">
           <div>Total Amount: € {totalAmount}</div>
-          <Button variant="primary" onClick={handleClose}>
+          <Button variant="primary" onClick={handleCloseCheckout}>
             Checkout
           </Button>
         </Modal.Footer>

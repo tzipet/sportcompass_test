@@ -17,7 +17,7 @@ function App() {
         if (item.id === product.id) {
           return { ...item, quantity: item.quantity + 1 };
         } else {
-          return { ...item };
+          return item;
         }
       });
     } else {
@@ -42,7 +42,7 @@ function App() {
       if (item.id === product.id) {
         return { ...item, quantity: valueAsNumber };
       } else {
-        return { ...item };
+        return item;
       }
     });
 

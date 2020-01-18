@@ -9,7 +9,7 @@ const Footer = () => {
           <div>January 2020 </div>
         </div>
         <div>
-          <div>Created by Tzipet</div>
+          <div>Created by Giorgos Petrou</div>
         </div>
       </footer>
     </div>

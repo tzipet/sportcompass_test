@@ -3,9 +3,8 @@ import styles from "./Cart.module.css";
 import ListGroup from "react-bootstrap/ListGroup";
 import NumericInput from "react-numeric-input";
 import Button from "react-bootstrap/Button";
-
 const Cart = ({ cartItems, onRemoveFromCart, onUpdateQuantity }) => {
-  const onclick = product => {
+  const handleRemoveClick = product => {
     onRemoveFromCart(product);
   };
 
@@ -21,10 +20,16 @@ const Cart = ({ cartItems, onRemoveFromCart, onUpdateQuantity }) => {
                 <div className={styles.cardContainer}>
                   <img
                     className={styles.itemImage}
-                    src={product.image1}
-                    alt={product.image2}
+                    src={product.images[0]}
+                    alt={product.images[0]}
+                    onError={event => {
+                      event.target.setAttribute(
+                        "src",
+                        `${process.env.PUBLIC_URL}/images/placeholder.jpg`
+                      );
+                      event.target.onError = null;
+                    }}
                   />
-
                   <div className={styles.itemBody}>
                     <span>{product.description}</span>
                     <span>€ {product.price}</span>
@@ -41,7 +46,10 @@ const Cart = ({ cartItems, onRemoveFromCart, onUpdateQuantity }) => {
                         valueSelect(valueAsNumber, product)
                       }
                     />
-                    <Button onClick={() => onclick(product)} variant="light">
+                    <Button
+                      onClick={() => handleRemoveClick(product)}
+                      variant="light"
+                    >
                       x
                     </Button>
                   </div>
@@ -53,5 +61,4 @@ const Cart = ({ cartItems, onRemoveFromCart, onUpdateQuantity }) => {
     </div>
   );
 };
-
 export default Cart;
