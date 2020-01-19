@@ -9,7 +9,7 @@ import Row from "react-bootstrap/Row";
 import Carousel from "react-bootstrap/Carousel";
 import Image from "react-bootstrap/Image";
 
-const ProductList = ({ onAddToCart, cartItems }) => {
+const ProductList = ({ onAddToCart }) => {
   const onclick = product => {
     onAddToCart(product);
   };
